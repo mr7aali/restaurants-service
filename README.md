@@ -10,7 +10,20 @@ This API endpoint allows for the creation of a new user in the system. It accept
 
 ## Request Data
 
-The API expects the following JSON data in the request body:
+Request body:
+
+```json
+{
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "123@gmail.com",
+  "password": "123",
+  "role": "user"
+}
+
+## Response Data
+
+Request body:
 
 ```json
 {
