@@ -27,9 +27,18 @@ Request body:
 
 ```json
 {
-  "firstName": "John",
-  "lastName": "Doe",
-  "email": "123@gmail.com",
-  "password": "123",
-  "role": "user"
+    "statusCode": 200,
+    "success": true,
+    "message": "user created successfully!",
+    "data": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "email": "123@gmail.com",
+        "password": "$2b$10$LevCL2FtJMf0Ketps.sa6.hDXjbjVneXwlvmQ8tdkvu.gGqz/xoAC",
+        "role": "user",
+        "_id": "66be600667920449d62aa327",
+        "createdAt": "2024-08-15T20:07:34.889Z",
+        "updatedAt": "2024-08-15T20:07:34.889Z",
+        "__v": 0
+    }
 }
