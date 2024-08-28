@@ -18,12 +18,13 @@ const getSingle = async (id: string): Promise<IFoodCategory | null> => {
 
 
 
-    const result = await FoodCategory.findOne({_id:id}).populate("foodItems");
-    const foodItems = await FoodItem.find({FoodCatagory:id}) ;
-   
-    // const result = await FoodCategory.findById(id);
-  const data = {...result,foodItems:foodItems}
-console.log(data);
+    let result = await FoodCategory.findOne({ _id: id }).populate("foodItems");
+    if (result) {
+        const foodItems = await FoodItem.find({ FoodCatagory: id });
+        if (result.foodItems) {
+            result.foodItems = foodItems; 
+        }
+    }
     return result;
 }
 export const foodCategoryService = {
