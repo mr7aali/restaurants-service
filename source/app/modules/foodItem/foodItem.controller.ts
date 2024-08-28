@@ -1,17 +1,18 @@
 import CatchAsync from "../../../shared/CatchAsync"
 import sendResponse from "../../../shared/sendResponse";
-import { IFoodCategory } from "./foodCategory.interface";
-import { foodCategoryService } from "./foodCategory.service";
+import { IFoodItem } from "./foodItem.interface";
+import { foodItemService } from "./foodItem.service";
+
 
 
 const create = CatchAsync(
     async (req, res) => {
         const data = req.body;
-        const result = await foodCategoryService.create(data);
-        sendResponse<IFoodCategory>(res, {
+        const result = await foodItemService.create(data);
+        sendResponse<IFoodItem>(res, {
             success: true,
             statusCode: 200,
-            message: "food category created successsfully!",
+            message: "food item created successsfully!",
             data: result
         })
     }
@@ -19,8 +20,8 @@ const create = CatchAsync(
 const getAll = CatchAsync(
     async (req, res) => {
         const data = req.body;
-        const result = await foodCategoryService.getAll(data);
-        sendResponse<IFoodCategory[]>(res, {
+        const result = await foodItemService.getAll(data);
+        sendResponse<IFoodItem[]>(res, {
             success: true,
             statusCode: 200,
             message: "data retrieved successfully!",
@@ -30,15 +31,15 @@ const getAll = CatchAsync(
 );
 const getSingle = CatchAsync(
     async (req, res) => {
-        const result = await foodCategoryService.getSingle(req.params.id);
-        sendResponse<IFoodCategory | null>(res, {
+        const result = await foodItemService.getSingle(req.params.id);
+        sendResponse<IFoodItem | null>(res, {
             success: true,
             statusCode: 200,
-            message: "Category retrieved successfully!",
+            message: "data retrieved successfully!",
             data: result
         })
     }
 );
-export const foodCategoryController = {
+export const foodItemController = {
     create, getAll, getSingle
 }

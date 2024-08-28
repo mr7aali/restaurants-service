@@ -16,7 +16,7 @@ async function MyServer() {
         console.log("🚀🚀 mongoDB is connected successfully!");
 
         server = app.listen(config.port, () => {
-            console.log(`🧑‍💻🧑‍💻 settleAccount server listening on port ${config.port}`)
+            console.log(`🧑‍💻🧑‍💻 restaurant server listening on port ${config.port}`)
         })
     }
     catch (err) {
