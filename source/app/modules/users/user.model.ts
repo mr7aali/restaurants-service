@@ -3,6 +3,23 @@ import { IUser, IUserMethods, IUserModel } from "./user.interface";
 
 import bcrypt from 'bcrypt';
 import config from "../../../config";
+const ChatBotSchema: Schema = new Schema({
+    agent: {
+        type: String,
+        enum: ['ai', 'user'],
+        required: true,
+    },
+    time: {
+        type: String,
+        required: true,
+    },
+    text: {
+        type: String,
+        required: true,
+    },
+}, {
+    timestamps: true
+});
 const userSchema = new Schema<IUser, IUserModel, IUserMethods>({
     firstName: {
         type: String,
@@ -25,7 +42,10 @@ const userSchema = new Schema<IUser, IUserModel, IUserMethods>({
         type: String,
         required: true,
     },
-   
+    ChatingWithSystem: {
+        type: [ChatBotSchema],
+        default: [],
+    },
 }, {
     timestamps: true
 });
@@ -37,7 +57,5 @@ userSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, Number(config.bcryptSaltRounds));
     next();
 })
-// export const UserModel = (collectionName: string): IUserModel => {
-//     return mongoose.model<IUser, IUserModel>(collectionName, userSchema);
-// };
+
 export const User = model<IUser, IUserModel>('User', userSchema);

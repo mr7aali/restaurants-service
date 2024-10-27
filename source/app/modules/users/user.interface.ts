@@ -1,5 +1,10 @@
 import { HydratedDocument, Model } from "mongoose";
-
+// import { IChatBot } from "../chatbot/chatbot.interface";
+interface IChatBot {
+  agent: "ai" | "user";
+  time: string,
+  text: string;
+}
 export interface IUser {
   firstName: string;
   lastName: string;
@@ -7,6 +12,7 @@ export interface IUser {
   password: string;
   role: 'admin' | 'user';
   projectId: string;
+  ChatingWithSystem: IChatBot[];
 }
 
 

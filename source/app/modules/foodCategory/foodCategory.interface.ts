@@ -1,9 +1,12 @@
 import { IFoodItem } from './../foodItem/foodItem.interface';
 import { HydratedDocument, Model, Types } from "mongoose";
 
+
+
 export interface IFoodCategory {
     name: string;
-    // FoodItem?: Types.ObjectId[] | IFoodItem[];
+    image: string,
+
     foodItems: Types.ObjectId[] | IFoodItem[] ;
 }
 

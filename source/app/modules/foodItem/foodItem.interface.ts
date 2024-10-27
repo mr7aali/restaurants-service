@@ -3,8 +3,12 @@ import { IFoodCategory } from "../foodCategory/foodCategory.interface";
 
 export interface IFoodItem {
     name: string;
-    price: number;
-    discount: number;
+    image: string;
+    description: string;
+    category: string;
+    basePrice: number;
+    sizes: { name: string; price: number }[];
+    extraIngredientsPrices: { name: string; price: number }[]; 
     FoodCatagory: Types.ObjectId | IFoodCategory;
     // FoodItem: Types.ObjectId | IFoodCategory;
 }

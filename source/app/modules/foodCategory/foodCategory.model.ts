@@ -6,8 +6,11 @@ const FoodCategorySchema = new Schema<IFoodCategory, FoodCategoryModel, IFoodCat
         type: String,
         unique: true
     },
-  
-
+   
+     image:{
+        required: true,
+        type: String
+     },
     // FoodItem: [{ type: Schema.Types.ObjectId,  ref: 'FoodItem' }]
     foodItems: [{
         type: Schema.Types.ObjectId,

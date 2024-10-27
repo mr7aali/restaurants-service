@@ -7,16 +7,48 @@ const foodSchema = new Schema<IFoodItem, FoodItemModel, IFoodItemMethods>({
         type: String,
         unique: true
     },
-    price: {
+    image: {
         required: true,
-        type: Number,
+        type: String,
 
     },
-    discount: {
+    description: {
         required: true,
-        type: Number,
+        type: String,
 
     },
+    category: {
+        required: true,
+        type: String,
+    },
+    basePrice: {
+        required: true,
+        type: Number
+    },
+    sizes: [
+        {
+            name: {
+                type: String,
+                required: true,
+            },
+            price: {
+                type: Number,
+                required: true,
+            },
+        },
+    ],
+    extraIngredientsPrices: [
+        {
+            name: {
+                type: String,
+                required: true,
+            },
+            price: {
+                type: Number,
+                required: true,
+            },
+        },
+    ],
     FoodCatagory: {
         required: true,
         type: Schema.Types.ObjectId,
