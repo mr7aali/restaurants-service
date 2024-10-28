@@ -12,6 +12,7 @@ export const generateAIResponse = (userText: string): string => {
     }
     // Menu-related queries
     if (lowerCaseText.includes("menu")) {
+        
         return "Here's our menu: [Link to menu]. What would you like to order?";
     }
     // Delivery inquiries
