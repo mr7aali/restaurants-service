@@ -3,7 +3,7 @@ export const generateAIResponse = (userText: string): string => {
     const lowerCaseText = userText.toLowerCase();
     const greetingPattern = /^(hello|hi(?:,\s*how\s*are\s*you)|good\s*evening|hey)$/i;
     // Greetings
-    if (/hello/.test(lowerCaseText)) {
+    if (lowerCaseText.includes("hi") || lowerCaseText.includes("hello")) {
         return "Hello! How can I help you today?";
     }
     // Order-related queries
