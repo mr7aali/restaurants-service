@@ -3,6 +3,7 @@ import { userRoutes } from "../modules/users/user.route";
 import { foodCategoryRouter } from "../modules/foodCategory/foodCategory.router";
 import { foodItemRouter } from "../modules/foodItem/foodItem.router";
 import { chatBorRouter } from "../modules/chatbot/chatbot.route";
+import { authRoutes } from "../modules/auth/auth.route";
 const router = express.Router();
 
 const moduleRoutes = [
@@ -21,6 +22,10 @@ const moduleRoutes = [
     {
         path: "/chatbot",
         route: chatBorRouter
+    },
+    {
+        path: "/auth",
+        route: authRoutes
     },
 ];
 
