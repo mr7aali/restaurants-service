@@ -24,7 +24,7 @@ const moduleRoutes = [
         route: chatBorRouter
     },
     {
-        path: "/auth",
+        path: "/usersd",
         route: authRoutes
     },
 ];
