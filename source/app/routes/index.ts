@@ -12,7 +12,7 @@ const moduleRoutes = [
         route: userRoutes
     },
     {
-        path: "/food-categories",
+        path: "/food-category",
         route: foodCategoryRouter
     },
     {
@@ -24,7 +24,7 @@ const moduleRoutes = [
         route: chatBorRouter
     },
     {
-        path: "/auth",
+        path: "/usersd",
         route: authRoutes
     },
 ];

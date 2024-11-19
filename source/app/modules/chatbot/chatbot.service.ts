@@ -26,7 +26,7 @@ const reply = async (data: { userId: string; text: string }): Promise<IChatBotTe
         time: formatTime(new Date())
     }
     // const saveToDB = await User.updateOne({ _id: data.userId }, { $set: { ChatingWithSystem: [] } });
-    // const saveToDB = await User.updateOne({ _id: data.userId }, { $push: { ChatingWithSystem:[ userText,agentText] } });
+    const saveToDB = await User.updateOne({ _id: data.userId }, { $push: { ChatingWithSystem:[ userText,agentText] } });
 
 
     return agentText;

@@ -42,3 +42,22 @@ Request body:
         "__v": 0
     }
 }
+
+##BaseURL = http://localhost:5000/user/create
+##endPoints 
+      User: 
+        1. user/create
+        2. user/get
+        3. user/get/:id
+        4. user/update/:id
+      foodCategory and foodItem :
+        1. food-item/get/:id
+        2. food-item/get-all
+        3. food-item/create
+
+        1. food-category/get/:id
+        2. food-category/get-all
+        3. food-category/create
+      
+     chatBot:
+     1. /chatbot/reply
