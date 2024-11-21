@@ -1,7 +1,13 @@
-import { Schema, model } from "mongoose";
+import mongoose, { Schema, model } from "mongoose";
 import { FoodItemModel, IFoodItem, IFoodItemMethods } from "./foodItem.interface";
+const ExtraPriceSchema = new Schema({
+    name: String,
+    price: Number
+})
+
 
 const foodSchema = new Schema<IFoodItem, FoodItemModel, IFoodItemMethods>({
+
     name: {
         required: true,
         type: String,
@@ -10,53 +16,18 @@ const foodSchema = new Schema<IFoodItem, FoodItemModel, IFoodItemMethods>({
     image: {
         required: true,
         type: String,
-
     },
     description: {
-        required: true,
         type: String,
+    },
+    category: { type: mongoose.Schema.Types.ObjectId, required: true, ref: "Category" },
+    basePrice: { type: Number },
+    sizes: { type: [ExtraPriceSchema] },
+    extraIngredientsPrices: { type: [ExtraPriceSchema] },
 
-    },
-    category: {
-        required: true,
-        type: String,
-    },
-    basePrice: {
-        required: true,
-        type: Number
-    },
-    sizes: [
-        {
-            name: {
-                type: String,
-                required: true,
-            },
-            price: {
-                type: Number,
-                required: true,
-            },
-        },
-    ],
-    extraIngredientsPrices: [
-        {
-            name: {
-                type: String,
-                required: true,
-            },
-            price: {
-                type: Number,
-                required: true,
-            },
-        },
-    ],
-    FoodCatagory: {
-        required: true,
-        type: Schema.Types.ObjectId,
-        ref: 'FoodCategory',
-    }
 }, {
     timestamps: true
 });
 
 
-export const FoodItem = model<IFoodItem, FoodItemModel>("FoodItem", foodSchema);
+export const MenuItem = model<IFoodItem, FoodItemModel>("MenuItem", foodSchema);

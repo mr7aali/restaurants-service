@@ -1,5 +1,4 @@
-import { IFoodItem } from './../foodItem/foodItem.interface';
-import { HydratedDocument, Model, Types } from "mongoose";
+import { HydratedDocument, Model } from "mongoose";
 
 export interface IChatBotTextType { agent: "ai" | "user"; time: string; text: string };
 

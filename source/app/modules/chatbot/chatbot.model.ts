@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 import { ChatbotModel, IChatBot, IChatBotMethods } from "./chatbot.interface";
 
-const FoodCategorySchema = new Schema<IChatBot, ChatbotModel, IChatBotMethods>({
+const ChatbotSchema = new Schema<IChatBot, ChatbotModel, IChatBotMethods>({
     agent: {
         required: true,
         type: String,
@@ -12,12 +12,13 @@ const FoodCategorySchema = new Schema<IChatBot, ChatbotModel, IChatBotMethods>({
         type: String
     },
 
-    time: [{
-        type: Schema.Types.ObjectId,
-        ref: 'FoodItem'
-    }]
+    time: {
+        required: true,
+        type: String
+    }
+
 }, {
     timestamps: true
 });
 
-export const ChatBot = model<IChatBot, ChatbotModel>("ChatBot", FoodCategorySchema);
+export const ChatBot = model<IChatBot, ChatbotModel>("ChatBot", ChatbotSchema);

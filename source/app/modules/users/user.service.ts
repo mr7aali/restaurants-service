@@ -7,15 +7,19 @@ import { User } from './user.model';
 
 
 const create = async (data: IUser): Promise<IUser> => {
+    const isEmailExits = await User.findOne({ email: data.email });
+    if(!!isEmailExits){
+       
+        throw new CustomError( 409, "User already exists!");
+    }
     const result = await User.create(data);
-
     if (!result) {
         throw new Error("Failed to create user!")
     }
     return result;
 };
 
-const getAll = async ( IPaginationOptons: IPaginationOptons): Promise<IGenericMetaResponse<IUser[]>> => {
+const getAll = async (IPaginationOptons: IPaginationOptons): Promise<IGenericMetaResponse<IUser[]>> => {
     const { page, limit, skip, sortBy, sortOrder } =
         paginationHelpers.calculatePagination(IPaginationOptons);
     const result = await User.find({}).sort().skip(skip).limit(limit);

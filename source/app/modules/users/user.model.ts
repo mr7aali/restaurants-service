@@ -1,8 +1,8 @@
 import { Schema, model } from "mongoose";
 import { IUser, IUserMethods, IUserModel } from "./user.interface";
-
 import bcrypt from 'bcrypt';
 import config from "../../../config";
+
 const ChatBotSchema: Schema = new Schema({
     agent: {
         type: String,
@@ -19,29 +19,28 @@ const ChatBotSchema: Schema = new Schema({
     },
 }, {
     timestamps: true
-});
+}); 
 const userSchema = new Schema<IUser, IUserModel, IUserMethods>({
-    firstName: {
-        type: String,
-        required: true,
-    },
-    lastName: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
+    name: { type: String },
+    email: { type: String, required: true, unique: true },
     password: {
         type: String,
         required: true,
+        validate: (password: string) => {
+            if (!password.length || password.length < 2) {
+                new Error('Password must be at least 8 characters');
+                return false;
+            }
+        }
     },
-    role: {
-        type: String,
-        required: true,
-    },
+    image: { type: String },
+    phone: { type: String },
+    streetAddress: { type: String },
+    postalCode: { type: String },
+    city: { type: String },
+    state: { type: String },
+    country: { type: String },
+    isAdmin: { type: Boolean, default: false },
     ChatingWithSystem: {
         type: [ChatBotSchema],
         default: [],

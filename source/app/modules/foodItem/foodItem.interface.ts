@@ -5,11 +5,10 @@ export interface IFoodItem {
     name: string;
     image: string;
     description: string;
-    category: string;
     basePrice: number;
     sizes: { name: string; price: number }[];
-    extraIngredientsPrices: { name: string; price: number }[]; 
-    FoodCatagory: Types.ObjectId | IFoodCategory;
+    extraIngredientsPrices: { name: string; price: number }[];
+    category: Types.ObjectId | IFoodCategory;
     // FoodItem: Types.ObjectId | IFoodCategory;
 }
 

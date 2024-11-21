@@ -6,12 +6,17 @@ interface IChatBot {
   text: string;
 }
 export interface IUser {
-  firstName: string;
-  lastName: string;
+  name: string;
   email: string;
   password: string;
-  role: 'admin' | 'user';
-  projectId: string;
+  image?: string;
+  phone?: string;
+  streetAddress?: string;
+  postalCode?: string;
+  city?: string;
+  state?: string;
+  country?: string;
+  isAdmin: boolean;
   ChatingWithSystem: IChatBot[];
 }
 
@@ -28,6 +33,5 @@ export interface IUserModel extends Model<IUser, Record<string, unknown>, IUserM
   fullName(): string;
 }
 
-// export type UserModel = Model<IUser, Record<string, unknown>, IUserMethods>;
-// export type UserModel = Model<IUser, Record<string, unknown>>;
+
 

@@ -1,17 +1,17 @@
 import { IFoodItem } from "./foodItem.interface";
-import { FoodItem } from "./foodItem.model";
+import { MenuItem } from "./foodItem.model";
 
 
 const create = async (data: IFoodItem): Promise<IFoodItem> => {
-    const result = (await FoodItem.create(data));
+    const result = (await MenuItem.create(data));
     return result;
 }
 const getAll = async (data: IFoodItem): Promise<IFoodItem[]> => {
-    const result = await FoodItem.find({});
+    const result = await MenuItem.find({});
     return result;
 }
 const getSingle = async (id: string): Promise<IFoodItem | null> => {
-    const result = await FoodItem.findById(id).populate("FoodCatagory");
+    const result = await MenuItem.findById(id);
     return result;
 }
 export const foodItemService = {

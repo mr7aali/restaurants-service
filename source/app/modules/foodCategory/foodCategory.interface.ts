@@ -6,8 +6,6 @@ import { HydratedDocument, Model, Types } from "mongoose";
 export interface IFoodCategory {
     name: string;
     image: string,
-
-    foodItems: Types.ObjectId[] | IFoodItem[] ;
 }
 
 
