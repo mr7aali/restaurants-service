@@ -1,4 +1,6 @@
+import { IPaginationOptons } from "../../../interfaces/pagination";
 import CatchAsync from "../../../shared/CatchAsync"
+import pick from "../../../shared/pick";
 import sendResponse from "../../../shared/sendResponse";
 import { IFoodItem } from "./foodItem.interface";
 import { foodItemService } from "./foodItem.service";
@@ -18,14 +20,18 @@ const create = CatchAsync(
     }
 );
 const getAll = CatchAsync(
+
     async (req, res) => {
+        const paginationOptions: IPaginationOptons = pick(req.query, ['page', 'limit', 'sortBy', 'sortOrder']);
         const data = req.body;
-        const result = await foodItemService.getAll(data);
+        const result = await foodItemService.getAll(paginationOptions);
         sendResponse<IFoodItem[]>(res, {
             success: true,
             statusCode: 200,
             message: "data retrieved successfully!",
-            data: result
+            data: result.data,
+            meta: result.meta
+            // meta:{}
         })
     }
 );

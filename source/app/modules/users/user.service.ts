@@ -22,6 +22,7 @@ const create = async (data: IUser): Promise<IUser> => {
 const getAll = async (IPaginationOptons: IPaginationOptons): Promise<IGenericMetaResponse<IUser[]>> => {
     const { page, limit, skip, sortBy, sortOrder } =
         paginationHelpers.calculatePagination(IPaginationOptons);
+        
     const result = await User.find({}).sort().skip(skip).limit(limit);
     if (result.length < 1) {
         throw new CustomError(404, "Users not found!");

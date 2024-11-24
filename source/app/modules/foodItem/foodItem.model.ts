@@ -1,4 +1,4 @@
-import mongoose, { Schema, model } from "mongoose";
+import mongoose, { Schema, model, models } from "mongoose";
 import { FoodItemModel, IFoodItem, IFoodItemMethods } from "./foodItem.interface";
 const ExtraPriceSchema = new Schema({
     name: String,
@@ -30,4 +30,4 @@ const foodSchema = new Schema<IFoodItem, FoodItemModel, IFoodItemMethods>({
 });
 
 
-export const MenuItem = model<IFoodItem, FoodItemModel>("MenuItem", foodSchema);
+export const MenuItem = models?.MenuItem || model<IFoodItem, FoodItemModel>("MenuItem", foodSchema);

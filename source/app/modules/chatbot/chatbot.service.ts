@@ -5,7 +5,8 @@ import { User } from "../users/user.model";
 import { formatTime } from "../../../utils/formatTime12";
 import { IUser } from "../users/user.interface";
 import { IChatBotTextType } from "./chatbot.interface";
-import { generateAIResponse } from "./chatbot.herlpers";
+import { generateAIResponse } from "./helpers";
+// import { generateAIResponse } from "./helpers/chatbot.herlpers";
 
 
 const reply = async (data: { userId: string; text: string }): Promise<IChatBotTextType> => {
@@ -25,15 +26,18 @@ const reply = async (data: { userId: string; text: string }): Promise<IChatBotTe
         text: agentResponse,
         time: formatTime(new Date())
     }
-    // const saveToDB = await User.updateOne({ _id: data.userId }, { $set: { ChatingWithSystem: [] } });
-    const saveToDB = await User.updateOne({ _id: data.userId }, { $push: { ChatingWithSystem:[ userText,agentText] } });
 
-
+    const saveToDB = await User.updateOne({ _id: data.userId }, { $push: { ChatingWithSystem: [userText, agentText] } });
+   
     return agentText;
 }
 
+const getMessage = (userId: string) => {
+
+}
+
 export const chatBotService = {
-    reply
+    reply, getMessage
 }
 
 

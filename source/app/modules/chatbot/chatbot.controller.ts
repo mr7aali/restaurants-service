@@ -17,7 +17,19 @@ const create = CatchAsync(
     }
 );
 
-
+// const getMessage = () => CatchAsync(
+//     async (req, res) => {
+//         const userId = req.params.userId;
+//         const result = await chatBotService.getMessage(userId);
+//         sendResponse<IChatBotTextType>(res, {
+//             success: true,
+//             statusCode: 200,
+//             message: "Successsfully get previous message!",
+//             data: result
+//         })
+//     }
+// );
 export const chatBotController = {
-    create
+    create,
+    //  getMessage
 }

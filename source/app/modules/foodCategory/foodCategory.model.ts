@@ -1,4 +1,4 @@
-import { Schema, model } from "mongoose";
+import { Schema, model, models } from "mongoose";
 import { FoodCategoryModel, IFoodCategory, IFoodCategoryMethods } from "./foodCategory.interface";
 
 
@@ -11,4 +11,4 @@ const FoodCategorySchema = new Schema<IFoodCategory, FoodCategoryModel, IFoodCat
 });
 
 
-export const Category = model<IFoodCategory, FoodCategoryModel>("Category", FoodCategorySchema);
+export const Category =models?.Category || model<IFoodCategory, FoodCategoryModel>("Category", FoodCategorySchema);
