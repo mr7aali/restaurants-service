@@ -15,20 +15,30 @@ const reply = async (data: { userId: string; text: string }): Promise<IChatBotTe
     if (!userProfile) {
         throw new CustomError(404, "Users not found!");
     }
+
+    if (userProfile.ChatingWithSystem.length > 100) {
+        userProfile.ChatingWithSystem.splice(0, 50); // Remove the first 50 elements
+    }
     const userText: IChatBotTextType = {
         agent: "user",
         text: data.text,
         time: formatTime(new Date())
     }
-    const agentResponse = generateAIResponse(data.text);
+    const agentResponse = await generateAIResponse(data.text);
     const agentText: IChatBotTextType = {
         agent: "ai",
         text: agentResponse,
         time: formatTime(new Date())
     }
 
-    const saveToDB = await User.updateOne({ _id: data.userId }, { $push: { ChatingWithSystem: [userText, agentText] } });
-   
+    
+    userProfile.ChatingWithSystem.push(userText, agentText);
+    const saveToDB = await User.updateOne(
+        { _id: data.userId },
+        { ChatingWithSystem: userProfile.ChatingWithSystem }
+    );
+    // const saveToDB = await User.updateOne({ _id: data.userId }, { $push: { ChatingWithSystem: [userText, agentText] } });
+
     return agentText;
 }
 
@@ -40,14 +50,3 @@ export const chatBotService = {
     reply, getMessage
 }
 
-
-// {
-//     agent: "ai",
-//     time: "02:58 PM",
-//     text: "Hi! Thanks for reaching out. What can I get for you?",
-//   },
-//   {
-//     agent: "user",
-//     time: "02:58 PM",
-//     text: "Hi! Thanks for reaching out. What can I get for you?",
-//   },
