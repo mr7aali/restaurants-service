@@ -58,8 +58,6 @@ export const generateAIResponse = async (userText: string): Promise<string> => {
             const menuString = findMenu.slice(0, -1).map(item => item.name).join(', ');
             return `We have ${menuString + " and " + findMenu.at(-1).name}.What would you like to order?`
         }
-
-
         return "It seems like you want to place an order. What would you like to order?";
     }
     if (containsToken(intentKeywords.category)) {
